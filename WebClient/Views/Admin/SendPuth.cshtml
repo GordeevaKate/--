@@ -1,0 +1,21 @@
+﻿@model WebClient.Models.ReportViewModel
+
+@{ ViewData["Title"] = "Выбор пути"; }
+
+<div class="text-left text-info">
+    <h1>@ViewData["Title"]</h1>
+</div>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+@using (Html.BeginForm("Validation", "Admin", new { Id = ViewBag.Id, date1 = ViewBag.Date1, date2 = ViewBag.Date2 }))
+{
+    <p>
+        Путь сохранения:<br>
+        @Html.TextBoxFor(x => x.Puth, new { value = "C:\\data\\" })<br>
+    </p>
+    <p>
+        Название Документа:<br>
+        @Html.TextBoxFor(x => x.Name)<br>
+    </p>
+
+    <input type="submit" value="Путь" class="btn btn-info btn-sm" />
+}

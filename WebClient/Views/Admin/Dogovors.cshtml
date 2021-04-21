@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Заключенные договора";
+}
+<div class="text-center text-info">
+    <h1>Заключенные договора</h1>
+</div>
+<a class="btn btn-primary btn-sm" asp-controller="Admin" asp-action="SendPuth" asp-route-id=0>Отчет по всем договорам</a>
+<table class="table">
+    <tr>
+        <td>Номер</td>
+        <td>Data</td>
+        <td>Клиент</td>
+        <td>Ответственный</td>
+        <td>На Сумму</td>
+    </tr>
+    @foreach (var doctor in ViewBag.Dogovor)
+    {@foreach (var client in ViewBag.User)
+        {
+            <tr>
+
+                @if (doctor.UserId == client.Id)
+
+                {
+                    <td>
+                        @doctor.Id
+                    </td>
+                    <td>
+                        @doctor.Data
+                    </td>
+                    <td>
+                        @doctor.FIO
+                    </td>
+                    <td>
+                        @client.Login
+                    </td>
+                    <td>
+                        @doctor.Cena
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" asp-controller="Admin" asp-action="SendPuth" asp-route-id="@doctor.Id">Отчет по договору</a>
+                    </td>
+
+                }
+            </tr>
+        }}
+</table>

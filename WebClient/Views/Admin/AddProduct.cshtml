@@ -1,0 +1,24 @@
+﻿@model WebClient.Models.AddProductModel
+
+@{
+    ViewData["Title"] = "Пополнить продукцию";
+}
+
+<div class="text-left text-info">
+    <h1>@ViewData["Title"]</h1>
+</div>
+@using (Html.BeginForm("AddProduct", "Admin"))
+{
+    <input type="hidden" value=@ViewBag.Id class="btn btn-info btn-sm" />
+    <p>
+        Название:<br>
+        @Html.TextBoxFor(x => x.Name)<br>
+        Цена: <br>
+        @Html.TextBoxFor(x => x.Cena)<br>
+        Количевство:<br>
+        @Html.TextBoxFor(x => x.Count)<br>
+    </p>
+    @Html.ValidationSummary(true, "", new { @style = "color: blue" })
+    <input type="submit" value="Пополнить" class="btn btn-info btn-sm" />
+
+}

@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = ViewBag.Text;
+}
+<div class="text-center text-info">
+    <h1>@($"{ViewBag.Text} Выбор дат") </h1>
+</div>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form method="get">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-inline">
+        <input type="hidden" name="id" value=ViewBag.Id class="btn btn-info btn-sm" />
+        <input type="date" id="date1" name="date1" value=@($"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}") />
+        <input type="date" id="date2" name="date2" value=@($"{DateTime.Now.AddDays(1).Year}-{DateTime.Now.AddDays(1).Month}-{DateTime.Now.AddDays(1).Day}") />
+        <input type="submit" asp-action="SendPuth" value="Выбор периода"   asp-route-id=@ViewBag.Id class="btn btn-default" />
+    </div>
+</form>

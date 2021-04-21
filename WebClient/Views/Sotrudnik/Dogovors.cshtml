@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Заключенные договора";
+}
+<div class="text-center text-info">
+    <h1>Заключенные договора</h1>
+</div>
+<table class="table">
+    <tr>
+        <td>Номер</td>
+        <td>Data</td>
+        <td>Клиент</td>
+        <td>На Сумму</td>
+    </tr>
+    @foreach (var doctor in ViewBag.Dogovor)
+    {
+        
+            <tr>
+
+                {
+                    <td>
+                        @doctor.Id
+                    </td>
+                    <td>
+                        @doctor.Data
+                    </td>
+                    <td>
+                        @doctor.FIO
+                    </td>
+                    <td>
+                        @doctor.Cena
+                    </td>
+
+                }
+            </tr>
+        }
+</table>

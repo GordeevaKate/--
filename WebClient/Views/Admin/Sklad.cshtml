@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Склады";
+}
+<div class="text-center text-info">
+    <h1>Склады @ViewBag.Sklad.Count  @ViewBag.Dat1 @ViewBag.Dat2</h1>
+</div>
+@using (Html.BeginForm("AddSklad", "Admin", FormMethod.Post))
+{
+    <input type="text" name="_name" value="" />
+    <br />
+    <button name="action" value="add">Добавить</button>
+}
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<table class="table">
+    <tr>
+        <td>Название</td>
+    </tr>
+    @foreach (var doctor in ViewBag.Sklad)
+    {
+        <tr>
+            <td>@doctor.Name</td>
+                <td>
+            <a class="btn btn-primary btn-sm" asp-controller="Admin" asp-action="Product" asp-route-id="@doctor.Id">Продукция</a>
+        </td>
+        </tr>
+    
+
+    }
+</table>

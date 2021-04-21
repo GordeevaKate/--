@@ -1,0 +1,55 @@
+﻿@model WebClient.Models.ProductDogovor
+@{
+    ViewData["Title"] = "Заключение договора";
+}
+
+
+
+
+@using (Html.BeginForm("CreateDogovor"))
+{
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <br>
+    <label asp-for="Name" class="control-label">ФИО Клиента:</label>
+    <input type="text" name="Model.Name" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+    <br>
+    <table class="table">
+        <tr>
+            <td>Название</td>
+            <td>Цена</td>
+            <td>Количевство</td>
+        </tr>
+        @foreach (var sklad in ViewBag.Sklad)
+        {
+            <tr>
+                <td>
+                    @sklad.Name
+                </td>
+            </tr>
+            @foreach (var product in ViewBag.Product)
+            {
+                @if (ViewBag.PS[sklad.Id][product.Id] > 0)
+
+                {
+
+                    <tr>
+                        <td>
+                            @product.Name
+                        </td>
+                        <td>
+                            @product.Cena
+                        </td>
+                        <td>
+                            @ViewBag.PS[sklad.Id][product.Id]
+                        </td>
+                        <td><input type="number" name="Model.ProductDogovors[@sklad.Id][@product.Id]" value="0" min="0" max="@ViewBag.PS[sklad.Id][product.Id]" /></td>
+
+                    </tr>
+                }
+            }
+        }
+
+    </table>
+    <input type="submit" value="Оформить договор" class="btn btn-info btn-sm" />
+}
